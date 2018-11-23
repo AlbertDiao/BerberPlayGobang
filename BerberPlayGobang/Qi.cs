@@ -11,9 +11,10 @@ using System.Drawing.Drawing2D;
 
 namespace BerberPlayGobang
 {
-    public partial class HQi : UserControl
+    public partial class Qi : UserControl
     {
-        public HQi()
+        public int color;
+        public Qi()
         {
             InitializeComponent();
         }
@@ -28,9 +29,13 @@ namespace BerberPlayGobang
             g.SmoothingMode = SmoothingMode.AntiAlias;  //使绘图质量最高，即消除锯齿
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.CompositingQuality = CompositingQuality.HighQuality;
-            SolidBrush b = new SolidBrush(Color.Black);
+            SolidBrush b;
+            if (color == Game.BLACK)
+                b = new SolidBrush(Color.Black);
+            else
+                b = new SolidBrush(Color.White);
+
             g.FillEllipse(b, 0, 0, this.ClientSize.Width, this.ClientSize.Height);
-            //g.FillPath(b, gPath);
             // 将区域赋值给Region
             this.Region = new System.Drawing.Region(gPath);
             base.OnPaint(pevent);

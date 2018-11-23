@@ -1,6 +1,6 @@
 ﻿namespace BerberPlayGobang
 {
-    partial class HQi
+    partial class Qi
     {
         /// <summary> 
         /// 必需的设计器变量。

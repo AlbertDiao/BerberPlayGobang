@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace BerberPlayGobang
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
         //Form2 gameForm;
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
             //gameForm = new Form2();
@@ -22,7 +22,7 @@ namespace BerberPlayGobang
         private void button1_Click(object sender, EventArgs e)
         {
 
-            Form2 gameForm = new Form2();
+            GameForm gameForm = new GameForm();
             this.Hide();
 
             gameForm.ShowDialog();
