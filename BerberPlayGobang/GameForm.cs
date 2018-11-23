@@ -34,7 +34,8 @@ namespace BerberPlayGobang
             board.xNum = 17;
             board.yNum = 17;
             qi = new Qi[board.xNum + 1, board.yNum + 1];
-
+            game.step = new Step[board.xNum * board.yNum];
+            
             for(int x=1;x<=board.xNum;x++)
             {
                 for (int y = 1; y <= board.yNum; y++)
@@ -70,7 +71,10 @@ namespace BerberPlayGobang
                 return;
             if (y == -1)
                 return;
+
             //开始落子
+            game.place(x, y, game.player);
+
             //根据当前玩家创建不同颜色的棋子
             qi[x,y].color = game.player;
             qi[x, y].Show();
@@ -87,6 +91,15 @@ namespace BerberPlayGobang
             //MessageBox.Show(p.ToString(), X + Y);
             label1.Text = X;
             label2.Text = Y;
+        }
+
+        //悔棋
+        private void tbBtn_Click(object sender, EventArgs e)
+        {
+       
+            Step s = game.tackBack();
+            if(s.x>0)
+                qi[s.x, s.y].Hide();
         }
     }
 }

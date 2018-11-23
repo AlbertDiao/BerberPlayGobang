@@ -68,6 +68,7 @@
     <Compile Include="Qi.Designer.cs">
       <DependentUpon>Qi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Step.cs" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

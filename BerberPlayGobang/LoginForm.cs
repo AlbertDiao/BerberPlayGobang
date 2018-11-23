@@ -26,7 +26,7 @@ namespace BerberPlayGobang
             this.Hide();
 
             gameForm.ShowDialog();
-            this.Close();
+            this.Show();
 
         }
     }
