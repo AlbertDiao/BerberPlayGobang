@@ -14,37 +14,47 @@ namespace BerberPlayGobang
     {
         private Board board;
         private Game game;
-        
+        private Qi[,] qi;
+
         public GameForm()
         {
             InitializeComponent();
-            board = new Board();
-            game = new Game();
+
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            board = new Board();
+            game = new Game();
+
             board.viewOffX = 45;
             board.viewOffY = 45;
             board.viewH = 510;
             board.viewW = 510;
             board.xNum = 17;
             board.yNum = 17;
-        }
+            qi = new Qi[board.xNum + 1, board.yNum + 1];
 
-        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
-        {
+            for(int x=1;x<=board.xNum;x++)
+            {
+                for (int y = 1; y <= board.yNum; y++)
+                {
+                    qi[x,y] = new Qi();
 
-        }
+                    qi[x,y].color = Game.BLACK;
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
+                    int viewX = board.getViewX(x);
+                    int viewY = board.getViewY(y);
+                    qi[x, y].Location = new Point(viewX + pictureBox1.Location.X, viewY + pictureBox1.Location.Y);
 
-        }
+                    //qi[x,y].Location = new Point(x + pictureBox1.Location.X, y + pictureBox1.Location.Y);
+                    qi[x,y].Hide();
+                    this.Controls.Add(qi[x,y]);
+                    qi[x,y].BringToFront();
+                }
 
-        private void MouseClick(object sender, MouseEventArgs e)
-        {
-
+            }
+            
         }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
@@ -62,15 +72,8 @@ namespace BerberPlayGobang
                 return;
             //开始落子
             //根据当前玩家创建不同颜色的棋子
-
-            Qi q = new Qi();
-            q.color = game.player;
-            int viewX = board.getViewX(x);
-            int viewY = board.getViewY(y);
-            q.Location = new Point(viewX + pictureBox1.Location.X, viewY + pictureBox1.Location.Y);
-            //q.Location = new Point(0,0);
-            this.Controls.Add(q);
-            q.BringToFront();
+            qi[x,y].color = game.player;
+            qi[x, y].Show();
 
             //切换下一个玩家
             game.player *= -1;
