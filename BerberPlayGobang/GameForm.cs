@@ -34,6 +34,7 @@ namespace BerberPlayGobang
             board.xNum = 17;
             board.yNum = 17;
             qi = new Qi[board.xNum + 1, board.yNum + 1];
+            board.board = new int[board.xNum + 1, board.yNum + 1] ;
             game.step = new Step[board.xNum * board.yNum];
             
             for(int x=1;x<=board.xNum;x++)
@@ -52,6 +53,7 @@ namespace BerberPlayGobang
                     qi[x,y].Hide();
                     this.Controls.Add(qi[x,y]);
                     qi[x,y].BringToFront();
+                    board.board[x, y] = Game.NONE;
                 }
 
             }
@@ -73,14 +75,24 @@ namespace BerberPlayGobang
                 return;
 
             //开始落子
-            game.place(x, y, game.player);
+            game.place(x, y, game.player, board);
 
             //根据当前玩家创建不同颜色的棋子
             qi[x,y].color = game.player;
             qi[x, y].Show();
 
+            //算杀
+            int jc = game.judge(board);
+            if (jc == Game.BLACK)
+                MessageBox.Show("黑赢！");
+            else if (jc == Game.WHITE)
+                MessageBox.Show("白赢！");
+
             //切换下一个玩家
-            game.player *= -1;
+            if (game.player == Game.BLACK)
+                game.player = Game.WHITE;
+            else
+                game.player = Game.BLACK;
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -97,9 +109,14 @@ namespace BerberPlayGobang
         private void tbBtn_Click(object sender, EventArgs e)
         {
        
-            Step s = game.tackBack();
+            Step s = game.tackBack(board);
             if(s.x>0)
                 qi[s.x, s.y].Hide();
+            //还原玩家
+            if (game.player == Game.BLACK)
+                game.player = Game.WHITE;
+            else
+                game.player = Game.BLACK;
         }
     }
 }

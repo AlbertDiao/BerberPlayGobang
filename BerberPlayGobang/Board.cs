@@ -11,6 +11,7 @@ namespace BerberPlayGobang
         public int viewOffX, viewOffY;//棋盘边缘距离界面边缘的偏移量
         public int viewW, viewH;//棋盘宽度和高度
         public int xNum, yNum;//棋盘棋子最大数量
+        public int[,] board;
         
         //viewX转posX
         public int getPosX(int viewX)
