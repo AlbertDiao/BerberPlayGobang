@@ -27,12 +27,15 @@ namespace BerberPlayGobang
             board = new Board();
             game = new Game();
 
-            board.viewOffX = 45;
-            board.viewOffY = 45;
-            board.viewH = 510;
-            board.viewW = 510;
-            board.xNum = 17;
-            board.yNum = 17;
+            board.viewOffX = 22;
+            board.viewOffY = 22;
+            board.viewH = 535;
+            board.viewW = 535;
+            board.xNum = 15;
+            board.yNum = 15;
+            board.gridH = 35;
+            board.gridW = 35;
+            board.chessD = 28;
             qi = new Qi[board.xNum + 1, board.yNum + 1];
             board.board = new int[board.xNum + 1, board.yNum + 1] ;
             game.step = new Step[board.xNum * board.yNum];

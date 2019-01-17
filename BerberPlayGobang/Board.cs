@@ -8,15 +8,17 @@ namespace BerberPlayGobang
 {
     class Board
     {
-        public int viewOffX, viewOffY;//棋盘边缘距离界面边缘的偏移量
+        public int viewOffX, viewOffY;//格子与棋盘边缘的距离
         public int viewW, viewH;//棋盘宽度和高度
+        public int gridW, gridH;//棋盘每个格子的长宽
+        public int chessD;//棋子的直径
         public int xNum, yNum;//棋盘棋子最大数量
         public int[,] board;
         
         //viewX转posX
         public int getPosX(int viewX)
         {
-            int pos = (viewX - viewOffX + viewW / xNum / 2) / (viewW / xNum);
+            int pos = (viewX - viewOffX + chessD / 2) / gridW + 1;
 
             if ((pos>xNum)||(pos<1))
                     return -1;
@@ -25,7 +27,7 @@ namespace BerberPlayGobang
         }
         public int getPosY(int viewY)
         {
-            int pos = (viewY - viewOffY + viewH / yNum / 2) / (viewH / yNum);
+            int pos = (viewY - viewOffY + chessD / 2) / gridH + 1;
             if ((pos > yNum) || (pos < 1))
                 return -1;
             else
@@ -33,11 +35,11 @@ namespace BerberPlayGobang
         }
         public int getViewX(int x)
         {
-            return x * viewW / xNum - viewW / xNum / 2 + viewOffX -3;
+            return (x - 1) * gridW - chessD / 2 + viewOffX;
         }
         public int getViewY(int y)
         {
-            return y * viewH / yNum - viewH / yNum / 2 + viewOffY -3;
+            return (y - 1) * gridH - chessD / 2 + viewOffY;
         }
     }
 }

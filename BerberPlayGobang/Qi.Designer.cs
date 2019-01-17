@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // HQi
+            // Qi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.Name = "HQi";
-            this.Size = new System.Drawing.Size(30, 30);
+            this.Name = "Qi";
+            this.Size = new System.Drawing.Size(28, 28);
             this.Load += new System.EventHandler(this.Qi_Load);
             this.ResumeLayout(false);
 
